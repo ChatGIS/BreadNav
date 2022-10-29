@@ -1,21 +1,5 @@
 <template>
-    <!--    <img alt="Vue logo" src="./assets/logo.png" />-->
-    <!--  <HelloWorld1 msg="Hello Vue 3 + TypeScript + Vite" />-->
-    <!--    <Resource></Resource>-->
-
-    <el-container>
-        <el-header id="header">
-            <div class="header-container">
-                <Logo></Logo>
-                <Menu></Menu>
-                <Search></Search>
-            </div>
-        </el-header>
-        <el-main>
-            <router-view></router-view>
-        </el-main>
-        <el-footer id="footer">关于本站</el-footer>
-    </el-container>
+    <router-view></router-view>
 </template>
 <script setup lang="ts">
 import Logo from './components/logo/index.vue'
