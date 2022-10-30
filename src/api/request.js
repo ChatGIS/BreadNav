@@ -30,12 +30,12 @@ service.interceptors.response.use(
             console.log(data)
             return data
         } else {
-            ElMessage.error(meta.msg)
+            // ElMessage.error(meta.msg)
             return Promise.reject(new Error(meta.msg))
         }
     },
     (error) => {
-        error.response && ElMessage.error(error.response.data)
+        // error.response && ElMessage.error(error.response.data)
         return Promise.reject(new Error(error.response.data))
     },
 )

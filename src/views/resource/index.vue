@@ -2,7 +2,7 @@
     <div class="common-layout">
         <Type @selectedType="getTagSelected"></Type>
         <el-row>
-            <el-col :span="4" v-for="(item: any, index) in websiteData" :key="index">
+            <el-col :span="4" v-for="(item, index) in websiteData" :key="index">
                 <el-card shadow="hover" class="webcard">
                     <el-row>
                         <el-col :span="8">

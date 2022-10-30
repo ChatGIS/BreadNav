@@ -1,14 +1,9 @@
+<!-- eslint-disable vue/require-v-for-key -->
 <template>
     <div class="type-container">
-        <span :class="tagSelectedArr.includes(0) ? 'active' : ''" @click="emitTypeSelected(0)"
-            >综合</span
-        >
-        <span
-            :class="tagSelectedArr.includes(item.id) ? 'active' : ''"
-            v-for="(item, index) in dicts"
-            @click="emitTypeSelected(item.id)"
-            >{{ item.name }}</span
-        >
+        <span :class="tagSelectedArr.includes(0) ? 'active' : ''" @click="emitTypeSelected(0)">综合</span>
+        <span :class="tagSelectedArr.includes(item.id) ? 'active' : ''" v-for="(item) in dicts"
+            @click="emitTypeSelected(item.id)">{{ item.name }}</span>
     </div>
 </template>
 
@@ -68,10 +63,12 @@ const emitTypeSelected = (val) => {
 span {
     padding: 0 0.5rem;
 }
+
 span:hover {
     color: #42b983;
     cursor: pointer;
 }
+
 .active {
     color: #5ca8b5;
     font-weight: bold;
