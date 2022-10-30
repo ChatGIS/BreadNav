@@ -1,28 +1,43 @@
 module.exports = {
-    root: true,
-    env: {
-        browser: true, // browser global variables
-        es2021: true, // adds all ECMAScript 2021 globals and automatically sets the ecmaVersion parser option to 12.
+    'env': {
+        'browser': true,
+        'commonjs': true,
+        'es2021': true
     },
-    parserOptions: {
-        ecmaVersion: 12,
-    },
-    // 添加Vue语法校验
-    parser: 'vue-eslint-parser', // ++
-    extends: [
-        'plugin:vue/vue3-recommended', // ++
+    'extends': [
+        'eslint:recommended',
+        'plugin:vue/essential',
+        'plugin:@typescript-eslint/recommended'
     ],
-    // 添加TS语法校验
-    extends: [
-        'plugin:@typescript-eslint/recommended', // ++
-    ],
-    plugins: ['@typescript-eslint'], // ++
-    parserOptions: {
-        parser: '@typescript-eslint/parser', // ++
+    'parser': 'vue-eslint-parser',
+    'parserOptions': {
+        'ecmaVersion': 'latest',
+        'sourceType': 'module',
+        'parser': '@typescript-eslint/parser',
     },
-    /* // Airbnb JavaScript Style
-     extends: [
-         'plugin:vue/vue3-recommended',
-         'airbnb-base', // ++
-     ],*/
-}
+    'plugins': [
+        'vue',
+        '@typescript-eslint'
+    ],
+    'rules': {
+        'vue/multi-word-component-names': ['error',{
+            'ignores': ['index', 'login']  //需要忽略的组件名
+        }],
+        'indent': [
+            'error',
+            4
+        ],
+        'linebreak-style': [
+            'error',
+            'windows'
+        ],
+        'quotes': [
+            'error',
+            'single'
+        ],
+        'semi': [
+            'error',
+            'never'
+        ]
+    }
+};
