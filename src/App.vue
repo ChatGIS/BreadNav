@@ -2,9 +2,6 @@
     <router-view></router-view>
 </template>
 <script setup lang="ts">
-import Logo from './components/logo/index.vue'
-import Menu from './components/menu/index.vue'
-import Search from './components/search/index.vue'
 </script>
 <style>
 #app {

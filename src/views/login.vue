@@ -4,15 +4,19 @@ import 'element-plus/es/components/message/style/css'
 import { ElMessage } from 'element-plus'
 import { login } from '../api/login'
 import router from '../router'
+import { useMainStore } from '../store'
 
 // 表单对象
 const form = reactive({
     username: '',
     password: '',
 })
+// 获取状态管理容器
+const store = useMainStore()
 // 登录函数
-const onSubmit = async () => {
+const onSubmit = async () => {       
     await login(form).then((res) => {
+        store.isLogin = true
         ElMessage({
             message: `欢迎回来，${res.username}`,
             type: 'success',

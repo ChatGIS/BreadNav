@@ -1,9 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useMainStore } from '../store'
 import Recommend from '../views/recommend/index.vue'
 import Resource from '../views/resource/index.vue'
 import My from '../views/my/index.vue'
 
-
+// 路由
 const routes = [{
     path: '/login',
     component: () => import('../views/login.vue')
@@ -22,7 +23,7 @@ const routes = [{
         // { path: '/my', component: My },
     ]
 }]
-
+// 创建路由
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
@@ -30,7 +31,9 @@ const router = createRouter({
 
 // 导航守卫
 router.beforeEach((to, from) => {
-    if (to.meta.requiresAuth && !window.localStorage.getItem('mbToken')) {
+    // 状态管理容器
+    const store = useMainStore()
+    if (to.meta.requiresAuth && !store.isLogin) {
         // 此路由需要授权，请检查是否已登录
         // 如果没有，则重定向到登录页面
         return {
