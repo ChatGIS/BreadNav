@@ -1,14 +1,15 @@
 <template>
     <div class="logo-container">
-        <el-image class="logo-image" src="../public/favicon.ico" :fit="fit" />
-        <span class="logo-text">面包屑导航</span>
+        <el-image class="logo-image" :src="imgBread" :fit="fitVal" />
+        <span class="logo-text">面包导航</span>
     </div>
 </template>
 
-<script>
-export default {
-    name: 'index',
-}
+<script setup lang="ts">
+import { ref } from 'vue'
+import imgBread from '../../assets/images/bread_618.png'
+
+const fitVal = ref('fit')
 </script>
 
 <style scoped>
@@ -21,9 +22,8 @@ export default {
     width: 54px;
 }
 .logo-text {
-    font-family: fangsong;
+    font-family: STHupo;
     font-size: x-large;
-    font-weight: bold;
     vertical-align: super;
 }
 </style>
