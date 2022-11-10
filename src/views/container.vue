@@ -28,7 +28,7 @@ const loginOrOut = () => {
 
 <template>
     <el-container>
-        <el-header id="header">
+        <el-header id="bn-header">
             <div class="header-container">
                 <Logo></Logo>
                 <Menu></Menu>
@@ -36,13 +36,19 @@ const loginOrOut = () => {
                 <el-button type="primary" @click="loginOrOut">{{ loginOrOutText }}</el-button>
             </div>
         </el-header>
-        <el-main>
+        <el-main id="bn-main">
             <router-view></router-view>
         </el-main>
-        <el-footer id="footer">关于本站</el-footer>
+        <el-footer id="bn-footer">备案号</el-footer>
     </el-container>
 </template>
 
 <style scoped>
-
+.bn-main {
+    position: relative;
+}
+#bn-footer {
+    height: 30px;
+    background-color: #f0f2f5;
+}
 </style>

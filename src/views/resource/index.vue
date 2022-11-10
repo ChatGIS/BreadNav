@@ -2,7 +2,7 @@
     <div class="common-layout">
         <Type @selectedType="getTagSelected"></Type>
         <el-row>
-            <el-col :span="4" v-for="(item, index) in websiteData" :key="index">
+            <el-col :span="6" v-for="(item, index) in websiteData" :key="index">
                 <el-card shadow="hover" class="webcard">
                     <el-row>
                         <el-col :span="8">
@@ -43,7 +43,7 @@ const total = ref(0)
 const pageParam = ref({
     query: '',
     pagenum: 1,
-    pagesize: 30,
+    pagesize: 20,
     tags: [0],
 })
 // 查询结果是否只有一页，是则不显示分页组件
@@ -89,6 +89,7 @@ const getTagSelected = (val: any) => {
 }
 
 .webcard {
+    height: 170px;
     margin: 5px;
 }
     /* 网址链接样式 */
