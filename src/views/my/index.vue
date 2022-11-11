@@ -1,11 +1,13 @@
-<template>
-    <h1>我的</h1>
-</template>
+<script setup lang='ts'>
 
-<script>
-export default {
-    name: 'index.vue',
-}
 </script>
 
-<style scoped></style>
+<template>
+    <div>
+        <h1>我的</h1>
+    </div>
+</template>
+
+<style scoped>
+
+</style>

@@ -11,6 +11,7 @@ const routes = [{
 }, { 
     path: '/', 
     component: () => import('../views/container.vue'),
+    redirect: '/recommend',
     children: [
         { path: '/recommend', component: Recommend },
         { 
@@ -20,7 +21,7 @@ const routes = [{
                 requiresAuth: true
             }
         },
-        // { path: '/my', component: My },
+        { path: '/my', component: My },
     ]
 }]
 // 创建路由
