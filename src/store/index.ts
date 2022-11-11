@@ -15,11 +15,9 @@ export const useMainStore = defineStore('main', {
     /*
     * 类似于组件的methods,封装业务逻辑，修改 state
     * */
-    actions: {}
+    actions: {},
+    persist: {
+        storage: sessionStorage,
+        paths: ['isLogin'],
+    }
 })
-
-// 2. 使用容器中的state
-
-// 3. 修改state
-
-// 4.容器中的action的使用
