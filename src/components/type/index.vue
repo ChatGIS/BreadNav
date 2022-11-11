@@ -1,17 +1,18 @@
-<!-- eslint-disable vue/require-v-for-key -->
 <template>
-    <div class="type-container">
-        <span :class="tagSelectedArr.includes(0) ? 'active' : ''" @click="emitTypeSelected(0)">综合</span>
-        <span :class="tagSelectedArr.includes(item.id) ? 'active' : ''" v-for="(item) in dicts"
-            @click="emitTypeSelected(item.id)">{{ item.name }}</span>
-    </div>
+    <el-card class="box-card" shadow="always">
+        <el-tag :effect="tagSelectedArr.includes(0) ? 'dark' : 'plain'" @click="emitTypeSelected(0)" type="danger" size="large">综合
+        </el-tag>
+        <el-tag v-for="item in dicts" :key="item.id" :effect="tagSelectedArr.includes(item.id) ? 'dark' : 'plain'"
+            @click="emitTypeSelected(item.id)">{{ item.name }}</el-tag>
+    </el-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getTag } from '../../api/tag'
-import { ref, defineEmits } from 'vue'
+import { ref, defineEmits, reactive } from 'vue'
+
 // 定义存放字典值的对象
-const dicts = ref([])
+const dicts: any[] = reactive([])
 // 声明emit
 const emit = defineEmits(['selectedType'])
 // 定义数组用于存放已选择的标签，可根据是否包含在该数组设置标签样式，默认值是：[0]
@@ -25,11 +26,11 @@ const param = {
 // 获取类型
 const getType = async () => {
     const res = await getTag(param)
-    dicts.value = res.tags
+    dicts.push(...res.tags)
 }
 getType()
 // 标签点击
-const emitTypeSelected = (val) => {
+const emitTypeSelected = (val: number) => {
     // 如果点击“综合”标签，直接显示全部
     if (val == 0) {
         tagSelectedArr.value = [0]
@@ -60,17 +61,8 @@ const emitTypeSelected = (val) => {
     background-color: #ffffff;
 }
 
-span {
-    padding: 0 0.5rem;
-}
-
-span:hover {
-    color: #42b983;
+.el-tag {
+    margin: 0 0.1rem;
     cursor: pointer;
-}
-
-.active {
-    color: #5ca8b5;
-    font-weight: bold;
 }
 </style>
