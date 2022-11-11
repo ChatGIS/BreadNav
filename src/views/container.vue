@@ -44,11 +44,25 @@ const loginOrOut = () => {
 </template>
 
 <style scoped>
-.bn-main {
+section {
+    --header-height: 60px;
+    --footer-height: 30px;
+}
+#bn-header {
     position: relative;
+    height: var(--header-height);
+}
+#bn-main {
+    position: absolute;
+    top: 60px;
+    height: calc(100% - var(--header-height) - var(--footer-height));
+    overflow-y: auto;
 }
 #bn-footer {
-    height: 30px;
+    position: absolute;
+    bottom: 0px;
+    height: var(--footer-height);
+    width: 100%;
     background-color: #f0f2f5;
 }
 </style>
