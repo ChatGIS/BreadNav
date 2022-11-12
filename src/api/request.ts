@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://127.0.0.1:3007/api',
+    baseURL: import.meta.env.VITE_BASE_URL as string,
     timeout: 5000,
 })
 // 添加请求拦截器
