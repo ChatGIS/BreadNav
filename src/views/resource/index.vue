@@ -4,23 +4,51 @@
         <el-row>
             <el-col :span="6" v-for="(item, index) in websiteData" :key="index">
                 <el-card shadow="hover" class="webcard">
-                    <el-row>
+                    <div class="webcard-img-title" @click="clickWeb(item.id, item.url)">
+                        <el-row>
+                            <el-col :span="8">
+                                <el-avatar shape="square" :size="70" :src="item.favicon" />
+                            </el-col>
+                            <el-col :span="16">
+                                <div style="height: 40px; font-size: 500">
+                                    <span>{{ item.name }}</span>
+                                </div>
+                                <div>
+                                    <el-tag type="success" size="small" v-for="aTag in item.tags_name.split(',')"
+                                        :key="aTag" round>{{ aTag }}</el-tag>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <el-row class="webcard-desc" @click="clickWeb(item.id, item.url)">
+                        <el-col> {{ item.description }}</el-col>
+                    </el-row>
+                    <el-divider />
+                    <el-row class="webcard-click">
                         <el-col :span="8">
-                            <el-avatar :size="50" :src="item.favicon" />
+                            <el-tooltip class="box-item" effect="light" content="点击量" placement="top">
+                                <div>
+                                    <el-icon>
+                                        <Pointer />
+                                    </el-icon>
+                                    <span style="margin-left: 5px">{{ item.num_click }}</span>
+                                </div>
+                            </el-tooltip>
                         </el-col>
-                        <el-col :span="16">
-                            <el-row>
-                                <el-col>
-                                    <el-link :href="item.url" target="_blank" 
-                                        :title="item.name"
-                                        @click="clickWeb(item.id)">
-                                        {{item.name}}</el-link>
-                                </el-col>
-                            </el-row>
-                            <el-row>
-                                <el-tag class="mx-1" size="small">前端</el-tag>
-                                <el-tag class="mx-1" size="small">JS</el-tag>
-                            </el-row>
+                        <el-col :span="8">
+                            <el-tooltip class="box-item" effect="light" content="收藏量" placement="top">
+                                <div>
+                                    <el-icon><CollectionTag /></el-icon>
+                                    <span style="margin-left: 5px">{{ item.num_click - Math.round(Math.random() * 10) }}</span>
+                                </div>
+                            </el-tooltip>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-tooltip class="box-item" effect="light" content="分享" placement="top">
+                                <div>
+                                    <Share style="width: 1em; height: 1em; margin-right: 8px" />
+                                </div>
+                            </el-tooltip>
                         </el-col>
                     </el-row>
                 </el-card>
@@ -68,8 +96,9 @@ const handleCurrentChange = (val: number) => {
 }
 
 // 点击网站
-const clickWeb = (id: number) => {
+const clickWeb = (id: number, url: string) => {
     debugger
+    window.open(url)
     clickWebsite(id)
 }
 
@@ -89,12 +118,27 @@ const getTagSelected = (val: any) => {
 }
 
 .webcard {
-    height: 170px;
+    height: 180px;
     margin: 5px;
 }
-    /* 网址链接样式 */
-    .el-link {
-        width: 100%;
-        font-weight: bold;
-    }
+
+.webcard-img-title {
+    height: 80px;
+    cursor: pointer;
+}
+
+.webcard-desc {
+    height: 50px;
+    font-size: 12px;
+    color: #5CA8B5;
+    cursor: pointer;
+}
+
+.el-divider--horizontal {
+    margin: 2px 0;
+}
+
+.el-tag {
+    margin: 0.1rem 0.1rem;
+}
 </style>
