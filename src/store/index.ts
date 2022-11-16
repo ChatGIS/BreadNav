@@ -5,7 +5,7 @@ export const useMainStore = defineStore('main', {
     state: () => {
         return {
             isLogin: false,
-            count: 100
+            activeMenu: ''
         }
     },
     /*
@@ -18,6 +18,6 @@ export const useMainStore = defineStore('main', {
     actions: {},
     persist: {
         storage: sessionStorage,
-        paths: ['isLogin'],
+        paths: ['isLogin', 'activeMenu'],
     }
 })

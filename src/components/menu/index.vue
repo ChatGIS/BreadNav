@@ -7,10 +7,20 @@
 </template>
 
 <script setup lang="ts">import { ref } from 'vue'
+import { useMainStore } from '../../store'
 
+const store = useMainStore()
 const activeIndex = ref('/recommend')
-const handleSelect = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+// 进入页面，根据进行store.activeMenu判断要触发的菜单
+if(store.activeMenu == '') {
+    store.activeMenu = activeIndex.value
+} else {
+    activeIndex.value = store.activeMenu
+}
+// 菜单切换，进行保存
+const handleSelect = (key: string) => {
+    activeIndex.value = key
+    store.activeMenu = key
 }
 </script>
 
