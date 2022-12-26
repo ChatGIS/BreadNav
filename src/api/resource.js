@@ -36,3 +36,13 @@ export const deleteWebsite = (id) => {
         method: 'delete',
     })
 }
+
+/* 
+  * 网站推荐
+*/
+export const recommendWebsites = (params) => {
+    return request({
+        url: 'recommendWebsites',
+        params,
+    })
+}
