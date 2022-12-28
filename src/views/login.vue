@@ -22,9 +22,15 @@ const onSubmit = async () => {
             type: 'success',
         })
         window.localStorage.setItem('mbToken', res.token)
-        setTimeout(() => {
-            router.go(-1) 
-        }, 500)
+        var pathRedirect = router.currentRoute.value.query.redirect
+        if(pathRedirect) {
+            console.log(pathRedirect)
+            router.push({path: pathRedirect.toString()})
+        } else {
+            setTimeout(() => {
+                router.go(-1) 
+            }, 500)
+        }
     })
 }
 </script>

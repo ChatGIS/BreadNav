@@ -25,7 +25,6 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(response => {
     const { data, meta } = response.data
     if (meta.status === 200 || meta.status === 201) {
-        console.log(data)
         return data
     } else {
         // ElMessage.error(meta.msg)
