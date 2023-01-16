@@ -61,9 +61,9 @@
 </template>
 
 <script lang="ts" setup>
-import Type from '../../components/type/index.vue'
-import { getWebsite, clickWebsite } from '../../api/resource.js'
-import { reactive, ref } from 'vue'
+import Type from '@/components/type/index.vue'
+import { getWebsite, clickWebsite } from '@/api/resource.js'
+import { ref } from 'vue'
 
 // 查询结果总数
 const total = ref(0)
@@ -74,40 +74,44 @@ const pageParam = ref({
     pagesize: 20,
     tags: [0],
 })
+// 定义数组用于存放已选择的标签
+let tagValueSelected = ref([])
 // 查询结果是否只有一页，是则不显示分页组件
 const isSinglePage = ref(true)
 // 查询结果
 const websiteData = ref([])
 // 查询网站
-const initGetWebsitesList = async (tagSelected: any) => {
-    let tags = tagSelected ? tagSelected : []
-    pageParam.value.tags = tags
+const initGetWebsitesList = async () => {
+    // let tags = tagSelected ? tagSelected : []
+    pageParam.value.tags = tagValueSelected.value
     const res = await getWebsite(pageParam.value)
     total.value = res.total
     websiteData.value = res.websites
 }
 // 初始化查询
-initGetWebsitesList([])
+initGetWebsitesList()
 
-// 选择页码
+// 页码选择
 const handleCurrentChange = (val: number) => {
     pageParam.value.pagenum = val
-    initGetWebsitesList([])
+    initGetWebsitesList()
 }
 
 // 点击网站
 const clickWeb = (id: number, url: string) => {
-    debugger
+    
     window.open(url)
     clickWebsite(id)
 }
 
-// 获取标签值
+// 获取点击的标签值
 const getTagSelected = (val: any) => {
     if (val.length == 1 && val.includes(0)) {
-        val = []
+        tagValueSelected.value = []
+    } else {
+        tagValueSelected.value = val
     }
-    initGetWebsitesList(val)
+    initGetWebsitesList()
 }
 </script>
 
