@@ -63,7 +63,19 @@
 <script lang="ts" setup>
 import Type from '@/components/type/index.vue'
 import { getWebsite, clickWebsite } from '@/api/resource.js'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+
+// 网站接口
+interface Website {
+    id: number,
+    name: string,
+    url: string,
+    type: string,
+    favicon: string,
+    description: string,
+    num_click: number,
+    tags_name: string
+}
 
 // 查询结果总数
 const total = ref(0)
@@ -79,14 +91,14 @@ let tagValueSelected = ref([])
 // 查询结果是否只有一页，是则不显示分页组件
 const isSinglePage = ref(true)
 // 查询结果
-const websiteData = ref([])
+const websiteData: Website[] = reactive([])
 // 查询网站
 const initGetWebsitesList = async () => {
     // let tags = tagSelected ? tagSelected : []
     pageParam.value.tags = tagValueSelected.value
     const res = await getWebsite(pageParam.value)
     total.value = res.total
-    websiteData.value = res.websites
+    websiteData.push(...res.websites)
 }
 // 初始化查询
 initGetWebsitesList()
