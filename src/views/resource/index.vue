@@ -98,6 +98,7 @@ const initGetWebsitesList = async () => {
     pageParam.value.tags = tagValueSelected.value
     const res = await getWebsite(pageParam.value)
     total.value = res.total
+    websiteData.length = 0
     websiteData.push(...res.websites)
 }
 // 初始化查询
