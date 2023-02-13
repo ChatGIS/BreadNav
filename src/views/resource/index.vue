@@ -7,7 +7,12 @@
                     <div class="webcard-img-title" @click="clickWeb(item.id, item.url)">
                         <el-row>
                             <el-col :span="8">
-                                <el-avatar shape="square" :size="70" :src="item.favicon" />
+                                <!-- <el-avatar shape="square" :size="70" :src="item.favicon">A</el-avatar> -->
+                                <el-image :src="item.favicon">
+                                    <template #placeholder>
+                                        <el-image :src=loadingImg></el-image>
+                                    </template>
+                                </el-image>
                             </el-col>
                             <el-col :span="16">
                                 <div style="height: 40px; font-size: 500">
@@ -64,6 +69,9 @@
 import Type from '@/components/type/index.vue'
 import { getWebsite, clickWebsite } from '@/api/resource.js'
 import { reactive, ref } from 'vue'
+import getAssetsFile from '@/utils/sys-use'
+
+const loadingImg = getAssetsFile('loading.png')
 
 // 网站接口
 interface Website {
@@ -157,5 +165,9 @@ const getTagSelected = (val: any) => {
 
 .el-tag {
     margin: 0.1rem 0.1rem;
+}
+.el-image {
+    width: 70px;
+    height: 70px;
 }
 </style>
