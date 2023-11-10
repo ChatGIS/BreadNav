@@ -1,62 +1,66 @@
 <template>
-    <el-row>
-        <el-col :span="6" v-for="(item, index) in websiteData" :key="index">
-            <el-card shadow="hover" class="webcard">
-                <div class="webcard-img-title" @click="clickWeb(item.id, item.url)">
-                    <el-row>
+    <div>
+        <Saying></Saying>
+        <el-row>
+            <el-col :span="6" v-for="(item, index) in websiteData" :key="index">
+                <el-card shadow="hover" class="webcard">
+                    <div class="webcard-img-title" @click="clickWeb(item.id, item.url)">
+                        <el-row>
+                            <el-col :span="8">
+                                <el-avatar shape="square" :size="70" :src="item.favicon" />
+                            </el-col>
+                            <el-col :span="16">
+                                <div style="height: 40px; font-size: 500">
+                                    <span>{{ item.name }}</span>
+                                </div>
+                                <div>
+                                    <el-tag type="success" size="small" v-for="aTag in item.tags_name.split(',')"
+                                        :key="aTag" round>{{ aTag }}</el-tag>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <el-row class="webcard-desc" @click="clickWeb(item.id, item.url)">
+                        <el-col> {{ item.description }}</el-col>
+                    </el-row>
+                    <el-divider />
+                    <el-row class="webcard-click">
                         <el-col :span="8">
-                            <el-avatar shape="square" :size="70" :src="item.favicon" />
+                            <el-tooltip class="box-item" effect="light" content="点击量" placement="top">
+                                <div>
+                                    <el-icon>
+                                        <Pointer />
+                                    </el-icon>
+                                    <span style="margin-left: 5px">{{ item.num_click }}</span>
+                                </div>
+                            </el-tooltip>
                         </el-col>
-                        <el-col :span="16">
-                            <div style="height: 40px; font-size: 500">
-                                <span>{{ item.name }}</span>
-                            </div>
-                            <div>
-                                <el-tag type="success" size="small" v-for="aTag in item.tags_name.split(',')"
-                                    :key="aTag" round>{{ aTag }}</el-tag>
-                            </div>
+                        <el-col :span="8">
+                            <el-tooltip class="box-item" effect="light" content="收藏量" placement="top">
+                                <div>
+                                    <el-icon><CollectionTag /></el-icon>
+                                    <span style="margin-left: 5px">{{ item.num_click - Math.round(Math.random() * 10) }}</span>
+                                </div>
+                            </el-tooltip>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-tooltip class="box-item" effect="light" content="分享" placement="top">
+                                <div>
+                                    <Share style="width: 1em; height: 1em; margin-right: 8px" />
+                                </div>
+                            </el-tooltip>
                         </el-col>
                     </el-row>
-                </div>
-                <el-row class="webcard-desc" @click="clickWeb(item.id, item.url)">
-                    <el-col> {{ item.description }}</el-col>
-                </el-row>
-                <el-divider />
-                <el-row class="webcard-click">
-                    <el-col :span="8">
-                        <el-tooltip class="box-item" effect="light" content="点击量" placement="top">
-                            <div>
-                                <el-icon>
-                                    <Pointer />
-                                </el-icon>
-                                <span style="margin-left: 5px">{{ item.num_click }}</span>
-                            </div>
-                        </el-tooltip>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-tooltip class="box-item" effect="light" content="收藏量" placement="top">
-                            <div>
-                                <el-icon><CollectionTag /></el-icon>
-                                <span style="margin-left: 5px">{{ item.num_click - Math.round(Math.random() * 10) }}</span>
-                            </div>
-                        </el-tooltip>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-tooltip class="box-item" effect="light" content="分享" placement="top">
-                            <div>
-                                <Share style="width: 1em; height: 1em; margin-right: 8px" />
-                            </div>
-                        </el-tooltip>
-                    </el-col>
-                </el-row>
-            </el-card>
-        </el-col>
-    </el-row>   
+                </el-card>
+            </el-col>
+        </el-row>
+    </div> 
 </template>
 
 <script lang="ts" setup>
 import { recommendWebsites, clickWebsite } from '@/api/resource.js'
 import { reactive } from 'vue'
+import Saying from '@/components/saying/index.vue'
 
 // 网站接口
 interface Website {

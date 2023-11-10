@@ -1,5 +1,6 @@
 <template>
     <div class="common-layout">
+        <Saying></Saying>
         <Type @selectedType="getTagSelected"></Type>
         <el-row>
             <el-col :span="6" v-for="(item, index) in websiteData" :key="index">
@@ -67,6 +68,7 @@
 
 <script lang="ts" setup>
 import Type from '@/components/type/index.vue'
+import Saying from '@/components/saying/index.vue'
 import { getWebsite, clickWebsite } from '@/api/resource.js'
 import { reactive, ref } from 'vue'
 import getAssetsFile from '@/utils/sys-use'

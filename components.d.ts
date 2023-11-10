@@ -28,6 +28,7 @@ declare module 'vue' {
     HelloWorld1: typeof import('./src/components/HelloWorld1.vue')['default']
     Logo: typeof import('./src/components/logo/index.vue')['default']
     Menu: typeof import('./src/components/menu/index.vue')['default']
+    Saying: typeof import('./src/components/saying/index.vue')['default']
     Search: typeof import('./src/components/search/index.vue')['default']
     Type: typeof import('./src/components/type/index.vue')['default']
   }
