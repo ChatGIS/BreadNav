@@ -1,3 +1,11 @@
+<!--
+ * @Author: Dreamice dreamice13@foxmail.com
+ * @Date: 2022-11-10 19:03:25
+ * @LastEditors: Dreamice dreamice13@foxmail.com
+ * @LastEditTime: 2024-02-02 16:56:33
+ * @FilePath: \BreadNav\src\views\container.vue
+ * @Description: 
+-->
 <script setup lang='ts'>
 import { onMounted, ref } from 'vue'
 import router from '../router'
@@ -32,7 +40,6 @@ const loginOrOut = () => {
             <div class="header-container">
                 <Logo></Logo>
                 <Menu></Menu>
-                <Search></Search>
                 <el-button type="primary" @click="loginOrOut">{{ loginOrOutText }}</el-button>
             </div>
         </el-header>

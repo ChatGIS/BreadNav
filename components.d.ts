@@ -24,8 +24,6 @@ declare module 'vue' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    HelloWorld1: typeof import('./src/components/HelloWorld1.vue')['default']
     Logo: typeof import('./src/components/logo/index.vue')['default']
     Menu: typeof import('./src/components/menu/index.vue')['default']
     Saying: typeof import('./src/components/saying/index.vue')['default']
